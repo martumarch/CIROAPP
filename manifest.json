@@ -1,0 +1,25 @@
+{
+  "short_name": "miArgentina",
+  "name": "miArgentina Mockup",
+  "description": "Una simulación de la aplicación miArgentina.",
+  "icons": [
+    {
+      "src": "Captura%20de%20pantalla%202025-06-07%20013344%20%281%29%20%281%29%20%281%29-GmaAw08hwluCmV4ciiYsHPDPXevBC6.png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "Captura%20de%20pantalla%202025-06-07%20013344%20%281%29%20%281%29%20%281%29-GmaAw08hwluCmV4ciiYsHPDPXevBC6.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "Captura%20de%20pantalla%202025-06-07%20013344%20%281%29%20%281%29%20%281%29-GmaAw08hwluCmV4ciiYsHPDPXevBC6.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#f0f2f5",
+  "theme_color": "#3954d0"
+}

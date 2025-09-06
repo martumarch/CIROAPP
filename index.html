@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mi Argentina</title>
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/png" href="https://gwmypg6ehlv88zgm.public.blob.vercel-storage.com/arglogo-uSRSdYnOjQ6I4Rug1Uv3GnIjCSl6T2.png">
+    <link rel="apple-touch-icon" href="https://gwmypg6ehlv88zgm.public.blob.vercel-storage.com/arglogo-uSRSdYnOjQ6I4Rug1Uv3GnIjCSl6T2.png">
+    <link rel="shortcut icon" href="https://gwmypg6ehlv88zgm.public.blob.vercel-storage.com/arglogo-uSRSdYnOjQ6I4Rug1Uv3GnIjCSl6T2.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3954d0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="miArgentina">
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* Loading Screen Styles */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #3954d0 0%, #3954d0 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loading-logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 30px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        .loading-text {
+            color: white;
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .loading-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            font-weight: 300;
+            text-align: center;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-top: 30px;
+        }
+        
+        .loading-progress {
+            width: 200px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            margin-top: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .loading-progress-bar {
+            height: 100%;
+            background: white;
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Captura%20de%20pantalla%202025-06-07%20013344%20%281%29%20%281%29%20%281%29-GmaAw08hwluCmV4ciiYsHPDPXevBC6.png" alt="miArgentina Logo" class="loading-logo">
+        <div class="loading-text">miArgentina</div>
+        <div class="loading-subtitle">Cargando tu información...</div>
+        <div class="loading-progress">
+            <div class="loading-progress-bar" id="loadingProgressBar"></div>
+        </div>
+    </div>
+
+    <div class="phone-mockup">
+
+        <!-- Screen Home -->
+        <div class="screen active" id="screen-home">
+            <div class="app-header-extended">
+                <div class="app-header">
+                    <span class="menu-icon">&#9776;</span>
+                    <span class="title"><span class="mi-text">mi</span>Argentina</span>
+                    <div class="profile-icon-main">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fotoperfilinicial%20%281%29.jpg-an9vMrhViY7icdaXwh8DhtVp1uKEKz.jpeg" alt="Perfil" class="profile-image">
+                    </div>
+                </div>
+                <p class="greeting centered">¡Hola, Ciro!</p>
+            </div>
+            <div class="content">
+                <!-- Turnos Card -->
+                <div class="card turno-card">
+                    <div class="turno-card-icon-container">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/turnos%281%29.jpg-SFw1FBfTAdqK87WC4wmtoS6HLv2lst.jpeg" alt="Turnos" class="turno-card-icon-img">
+                    </div>
+                    <div class="turno-card-content">
+                        <p>No tenés turnos programad...</p>
+                        <button class="btn btn-primary">Sacá turno</button>
+                    </div>
+                </div>
+
+                <!-- Credenciales Card -->
+                <div class="card credenciales-card">
+                    <div class="credenciales-content">
+                        <p>¡Todas tus credenciales están al día!</p>
+                        <div class="credenciales-icon">
+                            <svg width="50" height="35" viewBox="0 0 50 35" fill="none">
+                                <rect x="2" y="5" width="40" height="25" rx="3" stroke="#1B5E20" stroke-width="2" fill="white"/>
+                                <circle cx="12" cy="15" r="4" stroke="#1B5E20" stroke-width="1.5" fill="none"/>
+                                <path d="M8 25 C8 22, 10 20, 12 20 C14 20, 16 22, 16 25" stroke="#1B5E20" stroke-width="1.5" fill="none"/>
+                                <line x1="22" y1="12" x2="36" y2="12" stroke="#1B5E20" stroke-width="1"/>
+                                <line x1="22" y1="16" x2="32" y2="16" stroke="#1B5E20" stroke-width="1"/>
+                                <line x1="22" y1="20" x2="34" y2="20" stroke-width="1"/>
+                                <circle cx="40" cy="8" r="6" fill="#4CAF50"/>
+                                <path d="M37 8 L39 10 L43 6" stroke="white" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>¿Qué necesitás hoy?</h2>
+                <div class="services-grid">
+                    <!-- Documentos -->
+                    <div class="service-item" id="btn-to-documentos">
+                        <div class="service-icon">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/documenimg%20%281%29.jpg-7a01lxxC9D83RxFWFqUCMzZHmIMTyl.jpeg" alt="Documentos" class="service-icon-img">
+                        </div>
+                        Documentos
+                    </div>
+                    <!-- Vehículos -->
+                    <div class="service-item" id="btn-to-vehiculos">
+                        <div class="service-icon">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vehiculos%20%281%29.jpg-BeD6UAJ40OU3kRwpOJtXBlSuxQYEcg.jpeg" alt="Vehículos" class="service-icon-img">
+                        </div>
+                        Vehículos
+                    </div>
+                    <!-- Trabajo -->
+                    <div class="service-item" id="btn-to-trabajo">
+                        <div class="service-icon">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/trabajo%20%281%29.jpg-OZQzv2K1aCWJoZ5cSU2dbOYXEYYIIv.jpeg" alt="Trabajo" class="service-icon-img">
+                        </div>
+                        Trabajo
+                    </div>
+                    <!-- Salud -->
+                    <div class="service-item" id="btn-to-salud">
+                        <div class="service-icon">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/salud1%20%281%29.jpg-Aqk8IOt6eaY2ZW7LPrBT2KkiA9y6kw.jpeg" alt="Salud" class="service-icon-img">
+                        </div>
+                        Salud
+                    </div>
+                    <!-- Cobros -->
+                    <div class="service-item" id="btn-to-cobros">
+                        <div class="service-icon">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cobros%20%281%29.jpg-YtzWZCKYhP1hYb4eEOZTS5nU0quPHA.jpeg" alt="Cobros" class="service-icon-img">
+                        </div>
+                        Cobros
+                    </div>
+                    <!-- Trámites -->
+                    <div class="service-item" id="btn-to-tramites">
+                        <div class="service-icon">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tramites%20%281%29.jpg-DgDfjcP51KdY6NsmplwXPWU9GvPvl3.jpeg" alt="Trámites" class="service-icon-img">
+                        </div>
+                        Trámites
+                    </div>
+                    <!-- Turnos -->
+                    <div class="service-item" id="btn-to-turnos">
+                        <div class="service-icon">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/turnos%281%29.jpg-SFw1FBfTAdqK87WC4wmtoS6HLv2lst.jpeg" alt="Turnos" class="service-icon-img">
+                        </div>
+                        Turnos
+                    </div>
+                    <!-- Hijos -->
+                    <div class="service-item" id="btn-to-hijos">
+                        <div class="service-icon">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hijos%20%281%29.jpg-rHlq6LJTqioDj4YLNrLei3hNAa36CE.jpeg" alt="Hijos" class="service-icon-img">
+                        </div>
+                        Hijos
+                    </div>
+                </div>
+
+                <div class="feriado-image-container">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/calendario%20%281%29.jpg-fxEKNFJPw484BEVuhYXQl401XSJDyt.jpeg" alt="Próximo feriado: 16 de junio" class="feriado-image">
+                </div>
+            </div>
+            <nav class="bottom-nav">
+                <div class="nav-item active">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/inicio2%20%281%29.jpg-QQqGW9xRkBPvFMiUEmqODs2xIAKXYK.jpeg" alt="Inicio" class="nav-icon-img">
+                    Inicio
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/novedadesw%20%281%29.jpg-gsEZraETBjAwjIHOlb3y1H2tYdPkTG.jpeg" alt="Novedades" class="nav-icon-img">
+                    Novedades
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/telefono%20%281%29.jpg-pstLcmbKBtCjTlnCoosZnmMjsm7y2b.jpeg" alt="Teléfonos" class="nav-icon-img">
+                    Teléfonos
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tina%20%281%29.jpg-wumERpWjV5YckmcbKaL763150D3JNg.jpeg" alt="Tina" class="nav-icon-img">
+                    Tina
+                </div>
+            </nav>
+        </div>
+
+        <!-- Screen Documentos -->
+        <div class="screen" id="screen-documentos">
+            <div class="app-header">
+                <span class="back-arrow" data-target="screen-home">&larr;</span>
+                <span class="title">Documentos</span>
+                <div style="width:30px"></div>
+            </div>
+            <div class="content">
+                <div class="document-item" id="dni-collapsible">
+                    <div class="document-item-header">
+                        <div class="doc-icon">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/documenimg%20%281%29.jpg-7a01lxxC9D83RxFWFqUCMzZHmIMTyl.jpeg" alt="Documentos" class="doc-icon-img">
+                        </div>
+                        <span>Documento Nacional de Identidad (DNI)</span>
+                        <span class="arrow-icon">&#9662;</span>
+                    </div>
+                    <div class="document-item-content">
+                        <button class="btn btn-primary" id="btn-to-dni-front">Ver DNI digital</button>
+                        <p class="renaper-info">Datos suministrados por RENAPER</p>
+                        <p>Recordá que podés solicitar el DNI para vos y para tus hijos y tenerlo disponible en la App.</p>
+                        <button class="btn btn-secondary">Solicitar DNI Digital</button>
+                        <div class="info-box">
+                            <span class="icon">&#8505;</span>
+                            Cambié o voy a cambiar el dispositivo
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="bottom-nav">
+                <div class="nav-item active">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/inicio2%20%281%29.jpg-QQqGW9xRkBPvFMiUEmqODs2xIAKXYK.jpeg" alt="Inicio" class="nav-icon-img">
+                    Inicio
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/novedadesw%20%281%29.jpg-gsEZraETBjAwjIHOlb3y1H2tYdPkTG.jpeg" alt="Novedades" class="nav-icon-img">
+                    Novedades
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/telefono%20%281%29.jpg-pstLcmbKBtCjTlnCoosZnmMjsm7y2b.jpeg" alt="Teléfonos" class="nav-icon-img">
+                    Teléfonos
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tina%20%281%29.jpg-wumERpWjV5YckmcbKaL763150D3JNg.jpeg" alt="Tina" class="nav-icon-img">
+                    Tina
+                </div>
+            </nav>
+        </div>
+
+        <!-- Screen Vehículos -->
+        <div class="screen" id="screen-vehiculos">
+            <div class="app-header">
+                <span class="back-arrow" data-target="screen-home">&larr;</span>
+                <span class="title">Vehículos</span>
+                <span class="refresh-icon">&#8635;</span>
+            </div>
+            <div class="content">
+                <!-- Info Card -->
+                <div class="vehiculos-info-card">
+                    <div class="vehiculos-info-text">
+                        Si viajas al exterior y no contás con cédula física y/o patente, comunicate con la <a href="#" class="dnrpa-link">DNRPA</a> para asesorarte.
+                    </div>
+                    <div class="vehiculos-info-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <rect x="4" y="18" width="16" height="3" rx="1" fill="currentColor" opacity="0.3"/>
+                            <circle cx="7" cy="19.5" r="1" fill="white"/>
+                            <circle cx="17" cy="19.5" r="1" fill="white"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Services Card -->
+                <div class="vehiculos-services-card">
+                    <h3 class="vehiculos-services-title">Agregá servicios</h3>
+                    <p class="vehiculos-services-description">
+                        Asociá servicios para ver tu licencia de conducir y las cédulas de vehículos asociados a tu DNI.
+                    </p>
+                    <button class="vehiculos-add-button">Agregar servicios</button>
+                </div>
+            </div>
+            <nav class="bottom-nav">
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/inicio2%20%281%29.jpg-QQqGW9xRkBPvFMiUEmqODs2xIAKXYK.jpeg" alt="Inicio" class="nav-icon-img">
+                    Inicio
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/novedadesw%20%281%29.jpg-gsEZraETBjAwjIHOlb3y1H2tYdPkTG.jpeg" alt="Novedades" class="nav-icon-img">
+                    Novedades
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/telefono%20%281%29.jpg-pstLcmbKBtCjTlnCoosZnmMjsm7y2b.jpeg" alt="Teléfonos" class="nav-icon-img">
+                    Teléfonos
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tina%20%281%29.jpg-wumERpWjV5YckmcbKaL763150D3JNg.jpeg" alt="Tina" class="nav-icon-img">
+                    Tina
+                </div>
+            </nav>
+        </div>
+
+        <!-- Screen Trabajo -->
+        <div class="screen" id="screen-trabajo">
+            <div class="app-header">
+                <span class="back-arrow" data-target="screen-home">&larr;</span>
+                <span class="title">Trabajo</span>
+                <div style="width:30px"></div>
+            </div>
+            <div class="content">
+                <!-- CUIL Card -->
+                <div class="trabajo-cuil-card">
+                    <div class="trabajo-name-section">
+                        <div class="trabajo-name-row">
+                            <div class="trabajo-name-field">
+                                <span class="trabajo-field-label">Nombre</span>
+                                <span class="trabajo-field-value">Ciro Leonel</span>
+                            </div>
+                            <div class="trabajo-name-field">
+                                <span class="trabajo-field-label">Apellido</span>
+                                <span class="trabajo-field-value">O'neill Gonzalez</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="trabajo-cuil-section">
+                        <span class="trabajo-field-label">CUIL</span>
+                        <span class="trabajo-cuil-number">20477384306</span>
+                    </div>
+                    
+                    <button class="trabajo-download-button">Descargar constancia de CUIL</button>
+                </div>
+
+                <!-- Data source info -->
+                <div class="trabajo-data-source">
+                    <span class="trabajo-data-text">Datos suministrados por </span> 
+                    <span class="trabajo-anses-link">ANSES</span>
+                </div>
+            </div>
+            <nav class="bottom-nav">
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/inicio2%20%281%29.jpg-QQqGW9xRkBPvFMiUEmqODs2xIAKXYK.jpeg" alt="Inicio" class="nav-icon-img">
+                    Inicio
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/novedadesw%20%281%29.jpg-gsEZraETBjAwjIHOlb3y1H2tYdPkTG.jpeg" alt="Novedades" class="nav-icon-img">
+                    Novedades
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/telefono%20%281%29.jpg-pstLcmbKBtCjTlnCoosZnmMjsm7y2b.jpeg" alt="Teléfonos" class="nav-icon-img">
+                    Teléfonos
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tina%20%281%29.jpg-wumERpWjV5YckmcbKaL763150D3JNg.jpeg" alt="Tina" class="nav-icon-img">
+                    Tina
+                </div>
+            </nav>
+        </div>
+
+        <!-- Screen Salud -->
+        <div class="screen" id="screen-salud">
+            <div class="app-header">
+                <span class="back-arrow" data-target="screen-home">&larr;</span>
+                <span class="title">Salud</span>
+                <div style="width:30px"></div>
+            </div>
+            <div class="content salud-content">
+                <!-- Sección 1: Banner principal -->
+                <div class="salud-section" id="salud-section-1">
+                    <div class="salud-banner">
+                        <div class="salud-banner-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M19.5 5.5h-15a2 2 0 00-2 2v9a2 2 0 002 2h15a2 2 0 002-2v-9a2 2 0 00-2-2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 15.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M17.5 15.5v-6M6.5 9.5v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="salud-banner-content">
+                            <h3 class="salud-banner-title">Credencial de Obra Social</h3>
+                            <p class="salud-banner-text">Accedé a tu credencial digital</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección 2: Información COVID -->
+                <div class="salud-section" id="salud-section-2">
+                    <div class="salud-card">
+                        <div class="salud-card-header">
+                            <div class="salud-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 14.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M19.5 8.5h-15a2 2 0 00-2 2v3a2 2 0 002 2h15a2 2 0 002-2v-3a2 2 0 00-2-2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M12 8.5V6M12 18v-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="salud-card-title">Vacunación COVID-19</h3>
+                        </div>
+                        <div class="salud-card-content">
+                            <p>Consultá tu certificado de vacunación contra el COVID-19 y accedé a información sobre las vacunas aplicadas.</p>
+                            <button class="salud-card-button">Ver certificado</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección 3: Información de salud -->
+                <div class="salud-section" id="salud-section-3">
+                    <div class="salud-info-box">
+                        <div class="salud-info-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M12 16v-4M12 8h.01M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="salud-info-text">
+                            <p>Recordá que podés acceder a tu <strong>historia clínica digital</strong> desde cualquier dispositivo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección 4: Servicios de salud -->
+                <div class="salud-section" id="salud-section-4">
+                    <div class="salud-card">
+                        <div class="salud-card-header">
+                            <div class="salud-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 12h6M12 9v6M21 12c0 4.971-4.029 9-9 9s-9-4.029-9-9 4.029-9 9-9 9 4.029 9 9z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="salud-card-title">Servicios de Salud</h3>
+                        </div>
+                        <ul class="salud-list">
+                            <li class="salud-list-item">
+                                <div class="salud-list-icon">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="salud-list-content">
+                                    <h4 class="salud-list-title">Donación de órganos</h4>
+                                    <p class="salud-list-description">Expresá tu voluntad de ser donante</p>
+                                </div>
+                                <span class="salud-list-arrow">&#8250;</span>
+                            </li>
+                            <li class="salud-list-item">
+                                <div class="salud-list-icon">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="salud-list-content">
+                                    <h4 class="salud-list-title">Turnos médicos</h4>
+                                    <p class="salud-list-description">Gestioná tus turnos médicos</p>
+                                </div>
+                                <span class="salud-list-arrow">&#8250;</span>
+                            </li>
+                            <li class="salud-list-item">
+                                <div class="salud-list-icon">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <path d="M16 4v16M8 4v16M3 8h18M3 16h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="salud-list-content">
+                                    <h4 class="salud-list-title">Recetas médicas</h4>
+                                    <p class="salud-list-description">Accedé a tus recetas digitales</p>
+                                </div>
+                                <span class="salud-list-arrow">&#8250;</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Sección 5: Información adicional -->
+                <div class="salud-section" id="salud-section-5">
+                    <div class="salud-card">
+                        <div class="salud-card-header">
+                            <div class="salud-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 14l9-5-9-5-9 5 9 5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M12 14l-9-5M12 14v5M18 9.5v5.5l-6 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="salud-card-title">Capacitaciones</h3>
+                        </div>
+                        <div class="salud-card-content">
+                            <p>Accedé a cursos y capacitaciones sobre primeros auxilios, RCP y otros temas relacionados con la salud.</p>
+                            <button class="salud-card-button">Ver capacitaciones</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="bottom-nav">
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/inicio2%20%281%29.jpg-QQqGW9xRkBPvFMiUEmqODs2xIAKXYK.jpeg" alt="Inicio" class="nav-icon-img">
+                    Inicio
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/novedadesw%20%281%29.jpg-gsEZraETBjAwjIHOlb3y1H2tYdPkTG.jpeg" alt="Novedades" class="nav-icon-img">
+                    Novedades
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/telefono%20%281%29.jpg-pstLcmbKBtCjTlnCoosZnmMjsm7y2b.jpeg" alt="Teléfonos" class="nav-icon-img">
+                    Teléfonos
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tina%20%281%29.jpg-wumERpWjV5YckmcbKaL763150D3JNg.jpeg" alt="Tina" class="nav-icon-img">
+                    Tina
+                </div>
+            </nav>
+        </div>
+
+        <!-- Screen Cobros -->
+        <div class="screen" id="screen-cobros">
+            <div class="app-header">
+                <span class="back-arrow" data-target="screen-home">&larr;</span>
+                <span class="title">Cobros</span>
+                <div style="width:30px"></div>
+            </div>
+            <div class="content">
+                <!-- Actualización de datos - PAS Card -->
+                <div class="cobros-card">
+                    <h3 class="cobros-card-title">Actualización de datos - PAS</h3>
+                    <p class="cobros-card-description">
+                        Si sos beneficiario del Programa de Acompañamiento social debés completar el formulario de actualización de datos.
+                    </p>
+                    <button class="cobros-button">Ingresar</button>
+                </div>
+
+                <!-- ¿Necesitás ayuda? Card -->
+                <div class="cobros-card">
+                    <h3 class="cobros-help-title">¿Necesitás ayuda?</h3>
+                    <p class="cobros-card-description">
+                        Podés realizar consultas o denunciar cualquier irregularidad en los programas del Ministerio de Capital Humano de manera segura y confidencial.
+                    </p>
+                    <button class="cobros-button">Contactanos</button>
+                </div>
+            </div>
+            <nav class="bottom-nav">
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/inicio2%20%281%29.jpg-QQqGW9xRkBPvFMiUEmqODs2xIAKXYK.jpeg" alt="Inicio" class="nav-icon-img">
+                    Inicio
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/novedadesw%20%281%29.jpg-gsEZraETBjAwjIHOlb3y1H2tYdPkTG.jpeg" alt="Novedades" class="nav-icon-img">
+                    Novedades
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/telefono%20%281%29.jpg-pstLcmbKBtCjTlnCoosZnmMjsm7y2b.jpeg" alt="Teléfonos" class="nav-icon-img">
+                    Teléfonos
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tina%20%281%29.jpg-wumERpWjV5YckmcbKaL763150D3JNg.jpeg" alt="Tina" class="nav-icon-img">
+                    Tina
+                </div>
+            </nav>
+        </div>
+
+        <!-- Screen DNI Front -->
+        <div class="screen" id="screen-dni-front">
+            <div class="app-header">
+                <span class="back-arrow" data-target="screen-documentos">&larr;</span>
+                <span class="title title-left-small">DNI Digital</span>
+                <div style="width:30px"></div>
+            </div>
+            <div class="content">
+                <div class="dni-white-container">
+                    <div class="dni-name-container">
+                        <h3 class="dni-name">Ciro Leonel O'neill Gonzalez</h3>
+                    </div>
+                    <div class="dni-flip-container">
+                        <div class="dni-flipper" id="dni-flipper">
+                            <div class="dni-front">
+                                <img src="https://app6rpt4gcisbgoc.public.blob.vercel-storage.com/cirofrontal.jpeg" alt="DNI Frontal" class="dni-image">
+                            </div>
+                            <div class="dni-back">
+                                <img src="https://app6rpt4gcisbgoc.public.blob.vercel-storage.com/cirorever.jpeg" alt="DNI Reverso" class="dni-image">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dni-indicators">
+                        <span class="indicator active" id="indicator-front"></span>
+                        <span class="indicator" id="indicator-back"></span>
+                    </div>
+                    <p class="last-update">Última actualización: 9/8/2025 22:01:38 hs</p>
+                    <div class="actions">
+                        <button class="action-button large" id="btn-to-dni-detail">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ojo-pica-HWCWuTnW95trYgWo1aB2Vk9ZCMIB24.png" alt="Ver detalle" class="icon-img-large">
+                            Ver detalle
+                        </button>
+                        <button class="action-button large">
+                            <svg class="icon-svg-large" width="32" height="32" viewBox="0 0 24 24" fill="none">
+                                <line x1="18" y1="6" x2="6" y2="18" stroke="#3954d0" stroke-width="3"/>
+                                <line x1="6" y1="6" x2="18" y2="18" stroke="#3954d0" stroke-width="3"/>
+                            </svg>
+                            Desactivar DNI
+                        </button>
+                    </div>
+                    <div class="qr-verify">
+                        <a href="#" class="qr-verify-button">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/qr-pica-8TbULyLp4TialOSNUuRLjVXbijhmTo.png" alt="Código QR" class="icon-img" width="24" height="24">
+                            <span class="qr-text">Verificar código QR</span>
+                            <span class="qr-arrow">&#8250;</span>
+                        </a>
+                    </div>
+                    <!-- QR Code Display -->
+                    <div class="qr-code-display">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202025-06-06%20at%2019.25.04-crsFmciULWesyn41Q4gCh58SvY3pG1.jpeg" alt="Código QR de verificación" class="qr-code-image">
+                    </div>
+                </div>
+            </div>
+            <nav class="bottom-nav">
+                <div class="nav-item active">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/inicio2%20%281%29.jpg-QQqGW9xRkBPvFMiUEmqODs2xIAKXYK.jpeg" alt="Inicio" class="nav-icon-img">
+                    Inicio
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/novedadesw%20%281%29.jpg-gsEZraETBjAwjIHOlb3y1H2tYdPkTG.jpeg" alt="Novedades" class="nav-icon-img">
+                    Novedades
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/telefono%20%281%29.jpg-pstLcmbKBtCjTlnCoosZnmMjsm7y2b.jpeg" alt="Teléfonos" class="nav-icon-img">
+                    Teléfonos
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tina%20%281%29.jpg-wumERpWjV5YckmcbKaL763150D3JNg.jpeg" alt="Tina" class="nav-icon-img">
+                    Tina
+                </div>
+            </nav>
+        </div>
+
+        <!-- Screen DNI Detail -->
+        <div class="screen" id="screen-dni-detail">
+            <div class="app-header">
+                <span class="back-arrow" data-target="screen-dni-front">&larr;</span>
+                <span class="title">DNI Digital</span>
+                <div style="width:30px"></div>
+            </div>
+            <div class="content dni-detail-content">
+                <div class="dni-detail-container">
+                    <!-- Foto de perfil -->
+                    <div class="dni-detail-photo-container">
+                        <img src="https://app6rpt4gcisbgoc.public.blob.vercel-storage.com/cirocara.jpeg" alt="Foto de perfil" class="dni-detail-photo">
+                    </div>
+                    
+                    <!-- Código de barras -->
+                    <div class="dni-detail-barcode-container">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-HVddG2VhmRiN5Jg8nelkB0OOiMnA7y.png" alt="Código de barras" class="dni-detail-barcode">
+                    </div>
+
+                    <!-- Información en dos columnas -->
+                    <div class="dni-detail-grid">
+                        <div class="dni-detail-item">
+                            <span class="dni-detail-label">DNI</span>
+                            <span class="dni-detail-value">46738430</span>
+                        </div>
+                        <div class="dni-detail-item">
+                            <span class="dni-detail-label">Número de trámite</span>
+                            <span class="dni-detail-value">00632784967</span>
+                        </div>
+                        <div class="dni-detail-item">
+                            <span class="dni-detail-label">Fecha de emisión</span>
+                            <span class="dni-detail-value">23/NOV/2022</span>
+                        </div>
+                        <div class="dni-detail-item">
+                            <span class="dni-detail-label">Fecha de vencimiento</span>
+                            <span class="dni-detail-value">13/NOV/2037</span>
+                        </div>
+                    </div>
+
+                    <!-- Línea separadora -->
+                    <div class="dni-detail-separator"></div>
+
+                    <!-- Información en una columna -->
+                    <div class="dni-detail-single-column">
+                        <div class="dni-detail-item-single">
+                            <span class="dni-detail-label">Nombre</span>
+                            <span class="dni-detail-value">CIRO LEONEL</span>
+                        </div>
+                        <div class="dni-detail-item-single">
+                            <span class="dni-detail-label">Apellido</span>
+                            <span class="dni-detail-value">ONEILL GONZALES</span>
+                        </div>
+                        <div class="dni-detail-item-single">
+                            <span class="dni-detail-label">Sexo</span>
+                            <span class="dni-detail-value">M</span>
+                        </div>
+                        <div class="dni-detail-item-single">
+                            <span class="dni-detail-label">Fecha de nacimiento</span>
+                            <span class="dni-detail-value">12/MAY/2007</span>
+                        </div>
+                        <div class="dni-detail-item-single">
+                            <span class="dni-detail-label">Nacionalidad</span>
+                            <span class="dni-detail-value">ARG</span>
+                        </div>
+                        <div class="dni-detail-item-single">
+                            <span class="dni-detail-label">Lugar de nacimiento</span>
+                            <span class="dni-detail-value"></span>
+                        </div>
+                        <div class="dni-detail-item-single">
+                            <span class="dni-detail-label">Dirección</span>
+                            <span class="dni-detail-value">COMANDANTE ESPORA 479 VILLA GOBERNADOR GALVEZ ROSARIO SANTA FE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="bottom-nav">
+                <div class="nav-item active">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/inicio2%20%281%29.jpg-QQqGW9xRkBPvFMiUEmqODs2xIAKXYK.jpeg" alt="Inicio" class="nav-icon-img">
+                    Inicio
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/novedadesw%20%281%29.jpg-gsEZraETBjAwjIHOlb3y1H2tYdPkTG.jpeg" alt="Novedades" class="nav-icon-img">
+                    Novedades
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/telefono%20%281%29.jpg-pstLcmbKBtCjTlnCoosZnmMjsm7y2b.jpeg" alt="Teléfonos" class="nav-icon-img">
+                    Teléfonos
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tina%20%281%29.jpg-wumERpWjV5YckmcbKaL763150D3JNg.jpeg" alt="Tina" class="nav-icon-img">
+                    Tina
+                </div>
+            </nav>
+        </div>
+
+        <!-- Screen Trámites -->
+        <div class="screen" id="screen-tramites">
+            <div class="app-header">
+                <span class="back-arrow" data-target="screen-home">&larr;</span>
+                <span class="title">Trámites</span>
+                <div style="width:30px"></div>
+            </div>
+            <div class="content">
+                <!-- Mis Turnos Card -->
+                <div class="tramites-card">
+                    <p class="tramites-card-description">
+                        Consultá más trámites en <strong>TramitAR</strong> o sacá un turno en <strong>Turnos</strong>
+                    </p>
+                    <button class="tramites-button">Ir a Mis Turnos</button>
+                </div>
+
+                <!-- Subsidios Card -->
+                <div class="tramites-card">
+                    <div class="tramites-card-title">
+                        <div class="tramites-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        Solicitud de subsidios a la luz y gas
+                    </div>
+                    <p class="tramites-card-description">
+                        Inscribite para mantener los subsidios de luz y de gas que hoy recibís en tu hogar.
+                    </p>
+                    <button class="tramites-button">Ir a la Solicitud</button>
+                    
+                    <div class="tramites-info-box">
+                        <div class="tramites-info-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M12 16v-4M12 8h.01M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="tramites-info-text">
+                            Para más información ingresá a <a href="#" class="tramites-info-link">www.argentina.gob.ar/subsidios</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Símbolo Internacional Card -->
+                <div class="tramites-card">
+                    <div class="tramites-card-title">
+                        <div class="tramites-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2M10 4h4a2 2 0 012 2v2a2 2 0 01-2 2h-4a2 2 0 01-2-2V6a2 2 0 012-2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="12" cy="14" r="2" fill="currentColor"/>
+                                <path d="M12 18v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        Solicita tu Símbolo Internacional de Acceso
+                    </div>
+                    <p class="tramites-card-description">
+                        Si tenés un CUD o sos representante de una persona con discapacidad* podés tramitar el beneficio de libre tránsito y estacionamiento (derecho regulado por las normativas de tránsito de cada localidad o municipio).
+                    </p>
+                    <p class="tramites-note">
+                        * Solo podrá efectuarlo el representante que hubiera realizado el trámite del CUD junto a la persona con discapacidad.
+                    </p>
+                    <button class="tramites-button">Solicita tu Símbolo</button>
+                </div>
+
+                <!-- Exención de Peajes Card -->
+                <div class="tramites-card">
+                    <div class="tramites-card-title">
+                        <div class="tramites-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 11v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        Solicita la exención de pago de peajes para personas con discapacidad.
+                    </div>
+                    <p class="tramites-card-description">
+                        Vialidad Nacional otorga, a través de las empresas concesionarias, la exención del pago de peajes de rutas nacionales concesionadas para personas con discapacidad.
+                    </p>
+                </div>
+            </div>
+            <nav class="bottom-nav">
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/inicio2%20%281%29.jpg-QQqGW9xRkBPvFMiUEmqODs2xIAKXYK.jpeg" alt="Inicio" class="nav-icon-img">
+                    Inicio
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/novedadesw%20%281%29.jpg-gsEZraETBjAwjIHOlb3y1H2tYdPkTG.jpeg" alt="Novedades" class="nav-icon-img">
+                    Novedades
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/telefono%20%281%29.jpg-pstLcmbKBtCjTlnCoosZnmMjsm7y2b.jpeg" alt="Teléfonos" class="nav-icon-img">
+                    Teléfonos
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tina%20%281%29.jpg-wumERpWjV5YckmcbKaL763150D3JNg.jpeg" alt="Tina" class="nav-icon-img">
+                    Tina
+                </div>
+            </nav>
+        </div>
+
+        <!-- Screen Turnos -->
+        <div class="screen" id="screen-turnos">
+            <div class="app-header">
+                <span class="back-arrow" data-target="screen-home">&larr;</span>
+                <span class="title">Turnos</span>
+                <div style="width:30px"></div>
+            </div>
+            <div class="content turnos-content">
+                <!-- Sección principal -->
+                <div class="turnos-section" id="turnos-section-1">
+                    <div class="turnos-card">
+                        <div class="turnos-icon-container">
+                            <div class="turnos-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z" fill="currentColor"/>
+                                    <text x="12" y="15" text-anchor="middle" fill="white" font-size="6" font-weight="bold">01</text>
+                                </svg>
+                                <div class="turnos-checkmark">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="turnos-message">No tenés turnos programados.</p>
+                        <button class="turnos-button">Sacá turno</button>
+                    </div>
+                </div>
+            </div>
+            <nav class="bottom-nav">
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/inicio2%20%281%29.jpg-QQqGW9xRkBPvFMiUEmqODs2xIAKXYK.jpeg" alt="Inicio" class="nav-icon-img">
+                    Inicio
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/novedadesw%20%281%29.jpg-gsEZraETBjAwjIHOlb3y1H2tYdPkTG.jpeg" alt="Novedades" class="nav-icon-img">
+                    Novedades
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/telefono%20%281%29.jpg-pstLcmbKBtCjTlnCoosZnmMjsm7y2b.jpeg" alt="Teléfonos" class="nav-icon-img">
+                    Teléfonos
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tina%20%281%29.jpg-wumERpWjV5YckmcbKaL763150D3JNg.jpeg" alt="Tina" class="nav-icon-img">
+                    Tina
+                </div>
+            </nav>
+        </div>
+
+        <!-- Screen Hijos -->
+        <div class="screen" id="screen-hijos">
+            <div class="app-header">
+                <span class="back-arrow" data-target="screen-home">&larr;</span>
+                <span class="title">Hijos</span>
+                <div style="width:30px"></div>
+            </div>
+            <div class="content">
+                <!-- Asociar Hijos Card -->
+                <div class="hijos-card">
+                    <h3 class="hijos-card-title">Asociá a tus hijos menores en tu perfil para acceder a sus documentos.</h3>
+                    <p class="hijos-card-description">
+                        Recordá que solo vas a poder asociar a tus hijos menores de 18 años que estén registrados en Renaper.
+                    </p>
+                    <button class="hijos-button">Asociar un hijo/a</button>
+                </div>
+            </div>
+            <nav class="bottom-nav">
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/inicio2%20%281%29.jpg-QQqGW9xRkBPvFMiUEmqODs2xIAKXYK.jpeg" alt="Inicio" class="nav-icon-img">
+                    Inicio
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/novedadesw%20%281%29.jpg-gsEZraETBjAwjIHOlb3y1H2tYdPkTG.jpeg" alt="Novedades" class="nav-icon-img">
+                    Novedades
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/telefono%20%281%29.jpg-pstLcmbKBtCjTlnCoosZnmMjsm7y2b.jpeg" alt="Teléfonos" class="nav-icon-img">
+                    Teléfonos
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tina%20%281%29.jpg-wumERpWjV5YckmcbKaL763150D3JNg.jpeg" alt="Tina" class="nav-icon-img">
+                    Tina
+                </div>
+            </nav>
+        </div>
+
+        <!-- Screen Sidebar Menu -->
+        <div class="screen" id="screen-sidebar">
+            <!-- Status Bar -->
+            <div class="status-bar">
+                <div class="status-left">
+                    
+                </div>
+            </div>
+            
+            <div class="sidebar-header">
+                <span class="sidebar-back-arrow" data-target="screen-home">←</span>
+                <span class="sidebar-title"><span class="mi-text">mi</span>Argentina</span>
+            </div>
+            
+            <div class="sidebar-content">
+                <!-- Profile Section -->
+                <div class="sidebar-profile">
+                    <div class="sidebar-profile-image">
+                        <div class="sidebar-avatar">
+                            <svg viewBox="0 0 24 24" fill="none" class="avatar-icon">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#666"/>
+                            </svg>
+                        </div>
+                        <div class="sidebar-checkmark">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="white"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="sidebar-profile-info">
+                        <h2 class="sidebar-name">Ciro Leonel O'neill Gonzalez</h2>
+                        <p class="sidebar-cuil">CUIL: 20477384306</p>
+                        <p class="sidebar-status">Identidad validada</p>
+                    </div>
+                </div>
+                
+                <!-- Menu Items -->
+                <div class="sidebar-menu">
+                    <div class="sidebar-menu-item">
+                        <div class="sidebar-menu-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#666"/>
+                            </svg>
+                        </div>
+                        <span class="sidebar-menu-text">Mi perfil</span>
+                    </div>
+                    
+                    <div class="sidebar-menu-item">
+                        <div class="sidebar-menu-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H16c-.8 0-1.54.37-2.01.99L12 11l-1.99-2.01A2.5 2.5 0 0 0 8 8H5.46c-.8 0-1.49.59-1.42 1.37L6.5 16H9v6h2v-6h2v6h2z" fill="#666"/>
+                                <circle cx="6" cy="4" r="2" fill="#666"/>
+                            </svg>
+                        </div>
+                        <span class="sidebar-menu-text">Hijos/as asociados</span>
+                    </div>
+                    
+                    <div class="sidebar-menu-item">
+                        <div class="sidebar-menu-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.2c.27-.27.35-.67.24-1.02C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z" fill="#666"/>
+                                <path d="M19 12h2c0-4.97-4.03-9-9-9v2c3.87 0 7 3.13 7 7z" fill="#666"/>
+                                <path d="M15 12h2c0-2.76-2.24-5-5-5v2c1.66 0 3 1.34 3 3z" fill="#666"/>
+                                <circle cx="17" cy="7" r="2" fill="#666"/>
+                                <path d="M19 7h2v2h-2z" fill="white"/>
+                                <path d="M17 5v4h4" stroke="white" stroke-width="1" fill="none"/>
+                            </svg>
+                        </div>
+                        <span class="sidebar-menu-text">Suscribir servicios</span>
+                    </div>
+                    
+                    <div class="sidebar-separator"></div>
+                    
+                    <div class="sidebar-menu-item">
+                        <div class="sidebar-menu-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6z" fill="#666"/>
+                            </svg>
+                        </div>
+                        <span class="sidebar-menu-text">Seguridad y privacidad</span>
+                    </div>
+                    
+                    <div class="sidebar-about">
+                        <span class="sidebar-about-mi">mi</span>
+                        <span class="sidebar-about-text">Acerca de</span>
+                    </div>
+                    
+                    <div class="sidebar-menu-item">
+                        <div class="sidebar-menu-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z" fill="#666"/>
+                                <circle cx="10" cy="14" r="1" fill="#666"/>
+                                <circle cx="14" cy="14" r="1" fill="#666"/>
+                                <circle cx="10" cy="17" r="1" fill="#666"/>
+                                <circle cx="14" cy="17" r="1" fill="#666"/>
+                            </svg>
+                        </div>
+                        <span class="sidebar-menu-text">Términos y condiciones</span>
+                    </div>
+                    
+                    <div class="sidebar-separator"></div>
+                    
+                    <div class="sidebar-menu-item">
+                        <div class="sidebar-menu-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.59L17 17l5-5z" fill="#666"/>
+                                <path d="M4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" fill="#666"/>
+                            </svg>
+                        </div>
+                        <span class="sidebar-menu-text">Cerrar sesión</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="bottom-nav">
+                <div class="nav-item active">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/inicio2%20%281%29.jpg-QQqGW9xRkBPvFMiUEmqODs2xIAKXYK.jpeg" alt="Inicio" class="nav-icon-img">
+                    Inicio
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/novedadesw%20%281%29.jpg-gsEZraETBjAwjIHOlb3y1H2tYdPkTG.jpeg" alt="Novedades" class="nav-icon-img">
+                    Novedades
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/telefono%20%281%29.jpg-pstLcmbKBtCjTlnCoosZnmMjsm7y2b.jpeg" alt="Teléfonos" class="nav-icon-img">
+                    Teléfonos
+                </div>
+                <div class="nav-item">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tina%20%281%29.jpg-wumERpWjV5YckmcbKaL763150D3JNg.jpeg" alt="Tina" class="nav-icon-img">
+                    Tina
+                </div>
+            </nav>
+        </div>
+
+    </div>
+
+    <script>
+        // Loading screen functionality with progress bar
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const progressBar = document.getElementById('loadingProgressBar');
+            let progress = 0;
+            
+            // Simulate loading progress
+            const progressInterval = setInterval(function() {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(progressInterval);
+                    
+                    // Hide loading screen after a short delay
+                    setTimeout(function() {
+                        loadingScreen.classList.add('hidden');
+                        
+                        // Remove loading screen from DOM after animation
+                        setTimeout(function() {
+                            loadingScreen.remove();
+                        }, 500);
+                    }, 300);
+                }
+                
+                // Update progress bar
+                progressBar.style.width = progress + '%';
+            }, 400);
+            
+            // Fallback: ensure loading screen is removed even if something goes wrong
+            setTimeout(function() {
+                if (loadingScreen.parentNode) {
+                    loadingScreen.classList.add('hidden');
+                    setTimeout(function() {
+                        if (loadingScreen.parentNode) {
+                            loadingScreen.remove();
+                        }
+                    }, 500);
+                }
+            }, 5000); // Maximum 5 seconds loading time
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
